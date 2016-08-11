@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.shiqkuangsan.android21.MainActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/main_drawerlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/main_drawer"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="#f2d0fe" />
+
+        <FrameLayout
+            android:id="@+id/main_content"
+            android:background="#d6feff"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+    </android.support.v4.widget.DrawerLayout>
+
+</LinearLayout>

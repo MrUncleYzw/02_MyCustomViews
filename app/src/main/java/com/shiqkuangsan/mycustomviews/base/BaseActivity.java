@@ -7,7 +7,7 @@ import android.view.View;
 /**
  * Created by shiqkuangsan on 2016/5/4.
  */
-// 基类Activity 
+// 基类Activity
 public abstract class BaseActivity extends Activity implements View.OnClickListener {
 
     @Override

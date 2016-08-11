@@ -1,0 +1,123 @@
+package com.shiqkuangsan.android21;
+
+
+
+
+
+import http.ApiHttpClient;
+import http.MyHttpConfig;
+
+import java.util.prefs.Preferences;
+
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import utils.NetWorkUtil;
+import views.DialogMaker;
+import views.ToastMaker;
+
+import base.BaseActivity;
+
+import com.lecloud.lecloudsdkdemo.R;
+import com.letv.skin.utils.NetworkUtils;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+
+
+public class LoginActivity extends BaseActivity implements OnClickListener {
+    private EditText setting_login_name,setting_login_password;
+    private Button setting_login_login_btn,setting_login_register_btn;
+    private String name, password, username_data = null, password_data = null;
+    Intent intent;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initParams();
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.setting_login_login_btn:
+                if(NetworkUtils.hasConnect(getApplicationContext())){
+                    name = setting_login_name.getText().toString();
+                    password = setting_login_password.getText().toString();
+
+                    if(TextUtils.isEmpty(name)||TextUtils.isEmpty(password)){
+                        ToastMaker.showLongToast("帐号或用户名不能为空");
+                        break;
+                    }
+                    showWaitDialog(null, true, null);
+                    MyHttpConfig.Login(name, password, new JsonHttpResponseHandler(){
+                        @Override
+                        public void onSuccess(int statusCode,
+                                              JSONObject response) {
+                            String msg = "";
+                            try {
+                                msg = response.getString("msg");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            dismissDialog();
+                            showAlertDialog(null, msg, new String[]{"确认"}, true, true, null);
+
+                        }
+                        @Override
+                        public void onFailure(Throwable e,
+                                              JSONArray errorResponse) {
+                            // TODO Auto-generated method stub
+                            super.onFailure(e, errorResponse);
+                        }
+                    });
+                }else{
+                    showAlertDialog(null, "网络连接不可用", new String[]{"确认"}, true, true, "WrongNetWork");
+                }
+                break;
+            case  R.id.setting_login_register_btn:
+                Intent  intent=new Intent(LoginActivity.this, Register.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+
+        }
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_register;
+    }
+
+
+    @Override
+    protected void initParams() {
+        // TODO Auto-generated method stub
+        setting_login_name = (EditText) findViewById(R.id.setting_login_name);
+        setting_login_password = (EditText) findViewById(R.id.setting_login_password);
+        setting_login_login_btn = (Button) findViewById(R.id.setting_login_login_btn);
+        setting_login_register_btn = (Button) findViewById(R.id.setting_login_register_btn);
+        //forget_password = (Button) findViewById(R.id.forget_password);
+        setting_login_login_btn.setOnClickListener(this);
+        //forget_password.setOnClickListener(this);
+        setting_login_register_btn.setOnClickListener(this);
+    }
+
+
+
+}

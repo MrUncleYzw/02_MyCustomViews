@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--<item android:drawable="@drawable/img_btn_normal" android:state_pressed="false" />-->
+    <!--<item android:drawable="@drawable/img_btn_pressed" android:state_pressed="true" />-->
+
+    <!--使用新的selector定义方式,其实就是基础原图覆盖一层效果-->
+    <item android:drawable="@drawable/img_btn_normal_my" android:state_pressed="true" />
+    <item android:drawable="@drawable/img_btn_normal" />
+
+</selector>

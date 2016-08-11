@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/img_btn_normal"
+    android:tint="#f7b827"
+    android:tintMode="multiply">
+
+    <!--selector的新方式
+        tintMode:渲染模式为覆盖
+        tint:覆盖颜色为深黄色-->
+</bitmap>

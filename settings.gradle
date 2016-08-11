@@ -1,0 +1,3 @@
+include ':app', ':android21', ':qqspecialeffects', ':slidingmenu', ':vitamio_lib', ':android_sample21'
+include ':slidingdemo'
+include ':WechatPicLooker'
