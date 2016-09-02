@@ -146,7 +146,7 @@ public class MyPullRefreshListView extends ListView implements AbsListView.OnScr
                     headView.setPadding(0, 0, 0, 0);
                     updateHeadView();
                 /*
-                    这里又得注意了,如果不消费掉时间,没法继续下拉了
+                    这里又得注意了,如果不消费掉事件,没法继续下拉了
                  */
                 } else if (mode == PULL_TO_REFRESH) {
                     // 如果没完全显示的话,就直接给你弹回去了
@@ -258,5 +258,6 @@ public class MyPullRefreshListView extends ListView implements AbsListView.OnScr
             tv_head_time.setText("上次刷新时间: " + DateFormat.getTimeFormat(getContext()).format(System.currentTimeMillis()));
         }
     }
+
 
 }

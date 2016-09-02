@@ -1,7 +1,6 @@
 package com.shiqkuangsan.mycustomviews.ui;
 
 import android.content.Intent;
-import android.graphics.Canvas;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -39,12 +38,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void initData() {
-
-    }
-
-    @Override
-    public void initListener() {
+    public void initDataAndListener() {
         ib_home.setOnClickListener(this);
         ib_menu.setOnClickListener(this);
     }
@@ -149,16 +143,20 @@ public class MainActivity extends BaseActivity {
         startActivity(new Intent(this, SwitchPictureActivity.class));
     }
 
-    public void myonoff(View view){
+    public void myonoff(View view) {
         startActivity(new Intent(this, MyOnOffActivity.class));
     }
 
-    public void droprefresh(View view){
+    public void droprefresh(View view) {
         startActivity(new Intent(this, PullRefreshActivity.class));
     }
 
-    public void slidemenu(View view){
+    public void slidemenu(View view) {
         startActivity(new Intent(this, SlideMenuActivity.class));
+    }
+
+    public void cityselector(View view) {
+        startActivity(new Intent(this, PtrDemoActivity.class));
     }
 
 }

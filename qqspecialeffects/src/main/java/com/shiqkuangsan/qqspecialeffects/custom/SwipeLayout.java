@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 /**
  * 配合ListView使用,如果需要在当前条目打开右边区域后拖动当前条目使得右边区域收回, 需要在ListView中设置滚动监听,
  * 滚动的时候调用SwipeLayoutManager的closeCurrentLayout()方法
- *
+ * <p/>
  * 还有就是回调接口,回调监听接口如果需要传递数据,需要给SwipeLayout设置tag,让tag封装数据,在状态监听接口中
  * 如果状态改变可以拿到相应的数据
  */
@@ -20,6 +20,7 @@ public class SwipeLayout extends FrameLayout {
 
     private View contentView;// item内容区域的view
     private View deleteView;// delete区域的view
+
     private int deleteHeight;// delete区域的高度
     private int deleteWidth;// delete区域的宽度
     private int contentWidth;// content区域的宽度
@@ -74,8 +75,7 @@ public class SwipeLayout extends FrameLayout {
     }
 
     @Override
-    protected void onLayout(boolean changed, int left, int top, int right,
-                            int bottom) {
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         // super.onLayout(changed, left, top, right, bottom);
         contentView.layout(0, 0, contentWidth, deleteHeight);
         deleteView.layout(contentView.getRight(), 0, contentView.getRight()
@@ -101,6 +101,7 @@ public class SwipeLayout extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
         //如果当前有打开的，则下面的逻辑不能执行
         if (!SwipeLayoutManager.getInstance().isAllowSwipe(this)) {
             requestDisallowInterceptTouchEvent(true);
@@ -131,7 +132,7 @@ public class SwipeLayout extends FrameLayout {
                 break;
         }
         viewDragHelper.processTouchEvent(event);
-        return true;
+        return super.onTouchEvent(event);
     }
 
     private Callback callback = new Callback() {

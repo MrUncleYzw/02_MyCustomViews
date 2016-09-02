@@ -2,6 +2,7 @@ package com.shiqkuangsan.mycustomviews.ui;
 
 import android.os.SystemClock;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
@@ -27,22 +28,20 @@ public class PullRefreshActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_droprefresh);
         mListView = (MyPullRefreshListView) findViewById(R.id.listview);
+        // 设置滑动摩擦力可以改变ListView的滑动速度
+        mListView.setFriction(ViewConfiguration.getScrollFriction() * 2);
     }
 
     @Override
-    public void initData() {
+    public void initDataAndListener() {
         // 模拟一些数据
-        for (int x = 0; x < 20; x++) {
+        for (int x = 0; x < 40; x++) {
             list.add("模拟LsitView的数据: " + x);
         }
 
         // 适配器直接用内部类了
         adapter = new MyAdapter();
         mListView.setAdapter(adapter);
-    }
-
-    @Override
-    public void initListener() {
         mListView.setOnListViewRefreshListener(new MyPullRefreshListView.OnListViewRefreshListener() {
             @Override
             public void OnRefreshing() {

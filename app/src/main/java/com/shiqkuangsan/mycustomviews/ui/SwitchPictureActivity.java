@@ -47,9 +47,11 @@ public class SwitchPictureActivity extends BaseActivity {
         // 小白点个数由图片的个数即上面的集合size决定,所以得在下面进行
     }
 
-//    private View[] pointViews;
+    //    private View[] pointViews;
+    private int lastPosition = 0;
+
     @Override
-    public void initData() {
+    public void initDataAndListener() {
         list = new ArrayList<>();
 
         ImageView iv1 = new ImageView(this);
@@ -112,18 +114,8 @@ public class SwitchPictureActivity extends BaseActivity {
                 }
             }
         }.start();
-    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        needRefresh = false;
-    }
 
-    private int lastPosition = 0;
-
-    @Override
-    public void initListener() {
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -144,6 +136,13 @@ public class SwitchPictureActivity extends BaseActivity {
             }
         });
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        needRefresh = false;
+    }
+
 
     @Override
     public void processClick(View view) {

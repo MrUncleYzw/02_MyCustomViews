@@ -1,5 +1,6 @@
 package com.shiqkuangsan.android21;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -14,8 +15,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
 /**
@@ -32,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            findViewById(R.id.ll_main_root).setBackgroundColor(0xffffd4d4);
+        }
 
         initView();
     }
@@ -41,11 +48,9 @@ public class MainActivity extends AppCompatActivity {
         // ToolBar的基础上支持ActionBar,先在style文件中样式使用NoActionBar,然后代码手动设置支持ActionBar
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
-        // 沉浸式时设置ActionBar位置
-        if (android.os.Build.VERSION.SDK_INT >= 19)
-            toolbar.setPadding(0, 30, 0, 0);
 
-        // ActionBar显示返回键,使用了支持DrawerLayout该方法不生效了
+        // ActionBar显示返回键,添加了沉浸式NoActionBar,这里返回null, 设置SupportActionBar但是下面使用DrawerLayout
+        // ActionBar的返回键又没用了
 //        actionBar = getSupportActionBar();
 //        if (actionBar != null)
 //            actionBar.setDisplayHomeAsUpEnabled(true);

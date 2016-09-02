@@ -27,12 +27,7 @@ public class SlideMenuActivity extends BaseActivity {
     }
 
     @Override
-    public void initData() {
-
-    }
-
-    @Override
-    public void initListener() {
+    public void initDataAndListener() {
         ib_back.setOnClickListener(this);
         btn_back.setOnClickListener(this);
     }

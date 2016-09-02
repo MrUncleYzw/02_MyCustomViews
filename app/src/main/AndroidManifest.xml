@@ -19,6 +19,8 @@
         <activity android:name=".ui.MyOnOffActivity"/>
         <activity android:name=".ui.PullRefreshActivity"/>
         <activity android:name=".ui.SlideMenuActivity"/>
+        <activity android:name=".ui.PtrDemoActivity"/>
+
     </application>
 
 </manifest>

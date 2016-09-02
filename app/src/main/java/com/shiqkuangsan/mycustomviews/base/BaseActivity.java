@@ -15,13 +15,11 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         super.onCreate(savedInstanceState);
 
         initView();
-        initData();
-        initListener();
+        initDataAndListener();
     }
 
     public abstract void initView();
-    public abstract void initData();
-    public abstract void initListener();
+    public abstract void initDataAndListener();
     public abstract void processClick(View view);
 
     @Override

@@ -33,12 +33,7 @@ public class MyOnOffActivity extends BaseActivity{
     }
 
     @Override
-    public void initData() {
-
-    }
-
-    @Override
-    public void initListener() {
+    public void initDataAndListener() {
 
     }
 

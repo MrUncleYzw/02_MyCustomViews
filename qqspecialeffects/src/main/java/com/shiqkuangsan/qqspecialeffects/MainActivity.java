@@ -1,16 +1,19 @@
 package com.shiqkuangsan.qqspecialeffects;
 
 import android.graphics.Canvas;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.SystemClock;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -20,6 +23,7 @@ import com.shiqkuangsan.qqspecialeffects.custom.SwipeLayout;
 import com.shiqkuangsan.qqspecialeffects.custom.SwipeLayoutManager;
 import com.shiqkuangsan.qqspecialeffects.utils.Dp2Px;
 
+import java.sql.DatabaseMetaData;
 import java.util.ArrayList;
 
 /**
@@ -29,6 +33,7 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
 
     private SlidingMenu menu;
     private MyListView lv_main;
+    private MyAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +50,7 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
     ArrayList<String> dataList = new ArrayList<>();
 
     private void initData() {
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 1; i++) {
             String s = "我是条目" + i;
             dataList.add(s);
         }
@@ -57,18 +62,15 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         iv_toggle.setOnClickListener(this);
 
         lv_main = (MyListView) findViewById(R.id.lv_main);
-        MyAdapter adapter = new MyAdapter();
-        View headerView = View.inflate(this, R.layout.layout_headerview, null);
-        ImageView iv_header = (ImageView) headerView.findViewById(R.id.iv_header);
-        lv_main.addHeaderView(headerView);
-        lv_main.setmImageView(iv_header);
+        adapter = new MyAdapter();
+
         // 设置滑动到顶部继续滑没有蓝色阴影
         lv_main.setOverScrollMode(ListView.OVER_SCROLL_NEVER);
         lv_main.setAdapter(adapter);
         lv_main.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-                if(scrollState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL)
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL)
                     SwipeLayoutManager.getInstance().closeCurrentLayout();
             }
 
@@ -77,8 +79,22 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
 
             }
         });
+        lv_main.setOnListViewRefreshListener(new MyListView.OnListViewRefreshListener() {
+            @Override
+            public void onRefreshing() {
+                handler.sendEmptyMessageDelayed(1,1500);
+            }
+        });
     }
 
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            lv_main.onRefreshCompleted();
+            dataList.add("我是条目" + dataList.size());
+            adapter.notifyDataSetChanged();
+        }
+    };
     private void initSlidingMenu() {
         final TextView tv1 = (TextView) findViewById(R.id.tv1);
         tv1.setText("23333");
@@ -106,6 +122,7 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
             }
         });
     }
+
 
     @Override
     public void onClick(View v) {
@@ -157,7 +174,7 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
             holder.iv_icon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    System.out.println("我特么页是能点的");
+                    System.out.println("我特么也是能点的");
                 }
             });
             holder.custom_swipelayout.setTag(position); // 通过setTag()可以将数据传递,在监听中获取到
@@ -194,12 +211,12 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
                 custom_swipelayout.setOnSwipeStateChangeListener(new SwipeLayout.OnSwipeStateChangeListener() {
                     @Override
                     public void onOpen(Object tag) {
-                        System.out.println("第" + (Integer)tag + "打开了");
+                        System.out.println("第" + (Integer) tag + "打开了");
                     }
 
                     @Override
                     public void onClose(Object tag) {
-                        System.out.println("第" + (Integer)tag + "关闭了");
+                        System.out.println("第" + (Integer) tag + "关闭了");
                     }
                 });
             }
