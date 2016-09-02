@@ -102,7 +102,9 @@ public class PtrDemoActivity extends BaseActivity {
 
     }
 
-
+    /**
+     * 模拟数据适配器
+     */
     class PtrDataListAdapter extends BaseAdapter {
 
         @Override
