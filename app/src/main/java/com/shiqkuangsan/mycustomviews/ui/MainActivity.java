@@ -138,25 +138,58 @@ public class MainActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-
+    /**
+     * 轮播图
+     *
+     * @param view
+     */
     public void switchpicture(View view) {
         startActivity(new Intent(this, SwitchPictureActivity.class));
     }
 
+    /**
+     * 自定义小开关
+     *
+     * @param view
+     */
     public void myonoff(View view) {
         startActivity(new Intent(this, MyOnOffActivity.class));
     }
 
+    /**
+     * 下拉刷新
+     *
+     * @param view
+     */
     public void droprefresh(View view) {
         startActivity(new Intent(this, PullRefreshActivity.class));
     }
 
+    /**
+     * 侧滑菜单
+     *
+     * @param view
+     */
     public void slidemenu(View view) {
         startActivity(new Intent(this, SlideMenuActivity.class));
     }
 
-    public void cityselector(View view) {
+    /**
+     * 下拉刷新测试
+     *
+     * @param view
+     */
+    public void ptrtest(View view) {
         startActivity(new Intent(this, PtrDemoActivity.class));
+    }
+
+    /**
+     * 图片选择
+     *
+     * @param view
+     */
+    public void picchoser(View view) {
+        startActivity(new Intent(this, PicChoserActivity.class));
     }
 
 }

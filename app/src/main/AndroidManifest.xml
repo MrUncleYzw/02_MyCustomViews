@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shiqkuangsan.mycustomviews">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,6 +22,7 @@
         <activity android:name=".ui.PullRefreshActivity"/>
         <activity android:name=".ui.SlideMenuActivity"/>
         <activity android:name=".ui.PtrDemoActivity"/>
+        <activity android:name=".ui.PicChoserActivity"/>
 
     </application>
 
