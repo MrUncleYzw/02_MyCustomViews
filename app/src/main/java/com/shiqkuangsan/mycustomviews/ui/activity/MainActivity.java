@@ -1,4 +1,4 @@
-package com.shiqkuangsan.mycustomviews.ui;
+package com.shiqkuangsan.mycustomviews.ui.activity;
 
 import android.content.Intent;
 import android.view.KeyEvent;

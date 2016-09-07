@@ -1,4 +1,4 @@
-package com.shiqkuangsan.mycustomviews.ui;
+package com.shiqkuangsan.mycustomviews.ui.activity;
 
 import android.os.SystemClock;
 import android.support.v4.view.ViewPager;
