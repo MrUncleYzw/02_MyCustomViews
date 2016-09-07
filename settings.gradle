@@ -1,3 +1,2 @@
-include ':app', ':android21', ':qqspecialeffects', ':slidingmenu', ':vitamio_lib', ':android_sample21'
-include ':slidingdemo'
+include ':app', ':android21', ':qqspecialeffects', ':slidingmenulib', ':vitamio_lib', ':android_sample21'
 include ':WechatPicLooker'
