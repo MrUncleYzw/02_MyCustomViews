@@ -71,6 +71,7 @@ public class PicChoserActivity extends BaseActivity {
         Bitmap bitmap = ChosePicUtil.getBitmapFromResult(requestCode, resultCode, data, this, false, true);
         if (bitmap != null)
             iv_image.setImageBitmap(bitmap);
+
 //        String path = ChosePicUtil.getPathFromResult(requestCode, resultCode, data, this);
 //        iv_image.setImageBitmap(BitmapFactory.decodeFile(path));
 //        ChosePicUtil.deleteTemp();
