@@ -11,11 +11,14 @@ import java.util.List;
  * Created by shiqkuangsan on 2016/5/4.
  */
 
-public class MyPagerAdapter extends PagerAdapter {
+/**
+ * 轮播图界面的ViewPager适配器
+ */
+public class PicPagerAdapter extends PagerAdapter {
 
     private List<View> list;
 
-    public MyPagerAdapter(List<View> list) {
+    public PicPagerAdapter(List<View> list) {
         this.list = list;
     }
 

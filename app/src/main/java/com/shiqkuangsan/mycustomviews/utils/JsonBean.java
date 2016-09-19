@@ -3,7 +3,7 @@ package com.shiqkuangsan.mycustomviews.utils;
 import java.util.List;
 
 /**
- * Created by dell on 2016/9/1.
+ * Created by dell on 2016/9/pic1.
  */
 public class JsonBean {
 

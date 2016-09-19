@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shiqkuangsan.mycustomviews.R;
-import com.shiqkuangsan.mycustomviews.adapter.MyPagerAdapter;
+import com.shiqkuangsan.mycustomviews.adapter.PicPagerAdapter;
 import com.shiqkuangsan.mycustomviews.base.BaseActivity;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class SwitchPictureActivity extends BaseActivity {
 
     private ViewPager pager;
     private TextView tv_msg;
-    private MyPagerAdapter adapter;
+    private PicPagerAdapter adapter;
     private List<View> list;
     private LinearLayout ll_point_container;
     private String[] msg = new String[]{
@@ -93,7 +93,7 @@ public class SwitchPictureActivity extends BaseActivity {
         }
 
         // 本例子中只有5个图片,我想滑到第5个的时候,继续滑动,怎么实现? 这就要去adapter中设置了
-        adapter = new MyPagerAdapter(list);
+        adapter = new PicPagerAdapter(list);
         pager.setAdapter(adapter);
         pager.setCurrentItem(1000000);
 

@@ -64,7 +64,7 @@ public class MyOnOffView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 //        Paint mpaint = new Paint();    // 绘制需要用到paint,android不建议在该方法中创建对象,去构造中初始化
-        // 1.绘制背景, 参数2,3: 以该组件为坐标系,左上角为原点,指定绘制的图片的x,y值
+        // pic1.绘制背景, 参数2,3: 以该组件为坐标系,左上角为原点,指定绘制的图片的x,y值
         canvas.drawBitmap(mswitch_bg, 0, 0, mpaint);
 
         // 2.绘制滑块,需要根据当前开关状态来绘制,开,滑块在右边;关,滑块在左边

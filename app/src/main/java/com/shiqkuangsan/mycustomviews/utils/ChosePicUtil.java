@@ -22,7 +22,7 @@ import java.io.FileNotFoundException;
 
 /**
  * 选择图片的工具类
- * 1. 在你的两个选择按钮分别调用startActivityFor()方法传入不同参书选择获取方式进入对应界面
+ * pic1. 在你的两个选择按钮分别调用startActivityFor()方法传入不同参书选择获取方式进入对应界面
  * 2. 在你的onActivityResult()方法处调用getBitmapFromResult()方法,将会获取到选择的图片的bitmap对象,直接使用即可.
  * 如果调用getPathFromResult()方法,将会获取到图片的路径(后者不支持裁剪且从相册获取使用过之后若想删除缓存需要调用deleteTemp())
  */
@@ -178,7 +178,7 @@ public class ChosePicUtil {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
         intent.putExtra("crop", "true");
-        // 裁剪框的比例，1：1
+        // 裁剪框的比例，pic1：pic1
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
         // 裁剪后输出图片的尺寸大小

@@ -192,4 +192,13 @@ public class MainActivity extends BaseActivity {
         startActivity(new Intent(this, PicChoserActivity.class));
     }
 
+    /**
+     * 图片查看
+     *
+     * @param view
+     */
+    public void piclooker(View view) {
+        startActivity(new Intent(this, PicLookerActivity.class));
+    }
+
 }

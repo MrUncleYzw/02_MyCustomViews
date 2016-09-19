@@ -1,6 +1,8 @@
 package com.shiqkuangsan.mycustomviews;
 
 import android.app.Application;
+import android.os.Handler;
+import android.os.Looper;
 import android.test.ApplicationTestCase;
 
 /**
