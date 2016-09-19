@@ -5,9 +5,9 @@
 
     <com.shiqkuangsan.mycustomviews.photoview.PhotoView
         android:id="@+id/iv_griditem"
-        android:layout_marginLeft="1dp"
+        android:layout_marginLeft="2dp"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:scaleType="fitCenter" />
+        android:layout_height="100dp"
+        android:scaleType="centerCrop" />
 
 </RelativeLayout>

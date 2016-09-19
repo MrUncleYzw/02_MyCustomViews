@@ -1,13 +1,18 @@
 package com.shiqkuangsan.mycustomviews.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.os.Handler;
+import android.graphics.Bitmap;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+import com.shiqkuangsan.mycustomviews.MyApplication;
 import com.shiqkuangsan.mycustomviews.R;
 import com.shiqkuangsan.mycustomviews.photoview.PhotoView;
 
@@ -24,10 +29,10 @@ import java.util.List;
  */
 public class PicGridAdapter extends BaseAdapter {
 
-    private List<Drawable> picsList;
+    private List<String> picsList;
     private Context context;
 
-    public PicGridAdapter(List<Drawable> picsList, Context context) {
+    public PicGridAdapter(List<String> picsList, Context context) {
         this.picsList = picsList;
         this.context = context;
     }
@@ -35,7 +40,6 @@ public class PicGridAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         return picsList == null ? 0 : picsList.size();
-//        return 1;
     }
 
     @Override
@@ -51,27 +55,25 @@ public class PicGridAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        View view;
-        ViewHolder holder;
         if (convertView == null) {
-            view = View.inflate(context, R.layout.item_picgrid, null);
-            holder = new ViewHolder(view);
-            view.setTag(holder);
-        } else {
-            view = convertView;
-            holder = (ViewHolder) view.getTag();
+            PhotoView p = new PhotoView(parent.getContext());
+            float sum = parent.getContext().getResources().getDisplayMetrics().widthPixels -
+                    parent.getContext().getResources().getDimensionPixelSize(R.dimen.dip_50);
+            int width = (int) (sum / 3);
+            p.setLayoutParams(new AbsListView.LayoutParams(width, width));
+            p.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            convertView = p;
         }
-        // 注意图片错位bug
-        x.image().bind(holder.iv_pic,"http://c.hiphotos.baidu.com/zhidao/pic/item/e1fe9925bc315c609652acc78ab1cb13485477d7.jpg");
-        return view;
+        PhotoView p = (PhotoView) convertView;
+        p.setEnabled(false);
+        ImageLoader.getInstance().displayImage(picsList.get(position), p, MyApplication.getPicOptionWithLoading(),
+                new SimpleImageLoadingListener() {
+                    @Override
+                    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                        view.setEnabled(true);//only loadedImage is available we can click item
+                    }
+                });
+        return p;
     }
 
-    private class ViewHolder {
-        private PhotoView iv_pic;
-
-        public ViewHolder(View view) {
-            iv_pic = (PhotoView) view.findViewById(R.id.iv_griditem);
-        }
-    }
 }

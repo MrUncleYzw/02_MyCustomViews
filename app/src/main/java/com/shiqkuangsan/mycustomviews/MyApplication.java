@@ -1,16 +1,21 @@
 package com.shiqkuangsan.mycustomviews;
 
 import android.app.Application;
+import android.graphics.Bitmap;
 import android.os.Environment;
+import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 
+import org.xutils.common.util.DensityUtil;
+import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
 import java.io.File;
@@ -53,4 +58,40 @@ public class MyApplication extends Application {
                 .build();//开始构建
         ImageLoader.getInstance().init(config);
     }
+
+    /**
+     * ImageLoader图片的默认配置
+     *
+     * @return ImageLoader图片的默认配置
+     */
+    public static DisplayImageOptions getPicOptionWithLoading() {
+        return new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.pic_loading) //设置图片在下载期间显示的图片
+                .showImageForEmptyUri(R.drawable.pic_loading_fail)//设置图片Uri为空或是错误的时候显示的图片
+                .showImageOnFail(R.drawable.pic_loading_fail)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .cacheOnDisc(true)// 本地缓存
+                .cacheInMemory(true)// 内存缓存
+                .considerExifParams(true)
+                .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
+                .build();
+    }
+
+    /**
+     * xUtils3图片的默认配置
+     *
+     * @return xUtils3图片的默认配置
+     */
+    public static ImageOptions getxUtilsPicOption() {
+        return new ImageOptions.Builder()
+                .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
+                .setRadius(DensityUtil.dip2px(5))
+                .setIgnoreGif(false)
+                .setCrop(true)//是否对图片进行裁剪
+                .setLoadingDrawableId(R.drawable.pic_loading)
+                .setFailureDrawableId(R.drawable.pic_loading_fail)
+                .setUseMemCache(true)
+                .build();
+    }
+
 }
