@@ -26,12 +26,12 @@
         <item name="android:windowNoTitle">true</item>
 		<item name="android:windowTranslucentStatus">true</item>
     </style>
-
-    // v19的处理
     <style name="immerse_theme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!--半透明状态栏-->
-        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
         <!--半透明导航栏-->
-        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <!--Android 5.x开始需要手动设置颜色，否则导航栏会呈现系统默认的浅灰色-->
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 </resources>

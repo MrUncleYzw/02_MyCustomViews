@@ -6,8 +6,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -29,7 +32,7 @@ import java.util.ArrayList;
 /**
  * QQ特效之侧滑菜单、删除条目、ListView头部放大
  */
-public class MainActivity extends SlidingFragmentActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private SlidingMenu menu;
     private MyListView lv_main;
@@ -38,11 +41,12 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        setBehindContentView(R.layout.layout_leftmenu);
+//        setBehindContentView(R.layout.layout_leftmenu);
 
         initData();
-        initSlidingMenu();
+//        initSlidingMenu();
         initView();
 
     }
@@ -50,7 +54,7 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
     ArrayList<String> dataList = new ArrayList<>();
 
     private void initData() {
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 10; i++) {
             String s = "我是条目" + i;
             dataList.add(s);
         }
@@ -58,8 +62,9 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
 
 
     private void initView() {
+        // 侧滑菜单有BUG
         ImageView iv_toggle = (ImageView) findViewById(R.id.iv_titlebar_menu);
-        iv_toggle.setOnClickListener(this);
+//        iv_toggle.setOnClickListener(this);
 
         lv_main = (MyListView) findViewById(R.id.lv_main);
         adapter = new MyAdapter();
@@ -82,12 +87,12 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         lv_main.setOnListViewRefreshListener(new MyListView.OnListViewRefreshListener() {
             @Override
             public void onRefreshing() {
-                handler.sendEmptyMessageDelayed(1,1500);
+                handler.sendEmptyMessageDelayed(1, 1500);
             }
         });
     }
 
-    private Handler handler = new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             lv_main.onRefreshCompleted();
@@ -95,6 +100,7 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
             adapter.notifyDataSetChanged();
         }
     };
+
     private void initSlidingMenu() {
         final TextView tv1 = (TextView) findViewById(R.id.tv1);
         tv1.setText("23333");
@@ -105,7 +111,7 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
                 System.out.println("点你麻痹");
             }
         });
-        menu = getSlidingMenu();
+//        menu = getSlidingMenu();
         menu.setBehindOffset(Dp2Px.dip2qx(this, 100));
         // 可点击,并且主界面重中间拉就可以拉出侧滑
         menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);

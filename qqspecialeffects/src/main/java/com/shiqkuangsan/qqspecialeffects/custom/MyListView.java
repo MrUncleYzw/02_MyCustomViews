@@ -29,6 +29,10 @@ import com.shiqkuangsan.qqspecialeffects.R;
 public class MyListView extends ListView {
 
     private float deltaY;
+    /**
+     * 下拉到该距离才触发刷新
+     */
+    public static final int PIXELS_REFRESH = 350;
 
     public MyListView(Context context) {
         super(context);
@@ -49,16 +53,25 @@ public class MyListView extends ListView {
 
     public void init() {
         View headerView = View.inflate(getContext(), R.layout.layout_headerview, null);
-        ImageView iv_header = (ImageView) headerView.findViewById(R.id.iv_header);
         iv_progress = (ImageView) headerView.findViewById(R.id.iv_progress);
         addHeaderView(headerView);
+        ImageView iv_header = (ImageView) headerView.findViewById(R.id.iv_header);
         setmImageView(iv_header);
     }
 
     private ImageView iv_header;
-    private int maxHeight;  // 可以拖动的最大高度
-    private int srcHeight;  // 图片的原始高度
-    private int ivHeight;   // 盛放图片的ImageView的高度
+    /**
+     * 可以拖动的最大高度
+     */
+    private int maxHeight;
+    /**
+     * 图片的原始高度
+     */
+    private int srcHeight;
+    /**
+     * 盛放图片的ImageView的高度
+     */
+    private int ivHeight;
 
     /**
      * 给ListView设置ImageView,目的是获取到ImageView的参数
@@ -78,7 +91,7 @@ public class MyListView extends ListView {
                 ivHeight = iv_header.getHeight();
                 // 获取图片原始高度
                 srcHeight = iv_header.getDrawable().getIntrinsicHeight();
-                // 如果ImageView高度(布局中写的200dp)比原图大,那就设置最大值为2倍(400dp),不然就以图片最大高度
+                // 如果ImageView高度(布局中写的200dp)比原图大,那最大高度就设置为ImageView的2倍(400dp),不然就以图片最大高度
                 maxHeight = ivHeight > srcHeight ? ivHeight * 2 : srcHeight;
             }
         });
@@ -89,7 +102,7 @@ public class MyListView extends ListView {
      * 该方法在ListView滑动到上头或者下头的时候调用该方法
      *
      * @param deltaX         继续滑动的时候x方向的变化量
-     * @param deltaY         继续滑动的时候y方向的变化量,正值表示滑动到底部,负值是滑动到头部
+     * @param deltaY         继续滑动的时候y方向的变化量,正值表示滑动到底部继续滑,负值是滑动到头部继续滑
      * @param scrollX        Current X scroll value in pixels before applying deltaX
      * @param scrollY
      * @param scrollRangeX   Maximum content scroll range along the X axis scrollX
@@ -140,7 +153,7 @@ public class MyListView extends ListView {
     private OnListViewRefreshListener listener;
 
     /**
-     * 从头部点击的才可以下拉刷新
+     * 从头部图片下拉才可以实现下拉刷新
      */
     private boolean isClickOnHeader = false;
 
@@ -149,7 +162,8 @@ public class MyListView extends ListView {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 startY = ev.getRawY();
-                if (startY <= iv_header.getBottom())
+
+                if (ev.getY() <= iv_header.getBottom())
                     isClickOnHeader = true;
                 break;
 
@@ -158,7 +172,7 @@ public class MyListView extends ListView {
                 if (currentMode == MODE_REFRESHING)
                     return super.onTouchEvent(ev);
                 if (isClickOnHeader) {
-                    if (deltaY > 350 && getFirstVisiblePosition() == 0) {
+                    if (deltaY > PIXELS_REFRESH && getFirstVisiblePosition() == 0) {
                         iv_progress.setVisibility(View.VISIBLE);
                         currentMode = MODE_READY;
                     } else {
