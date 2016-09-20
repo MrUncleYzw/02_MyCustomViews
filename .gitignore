@@ -7,3 +7,9 @@
 /build
 /captures
 /bin
+/slidingmenulib/bin/
+/slidingmenulib/build/
+/slidingmenulib/gen/
+/vitamio_lib/build/
+/vitamio_lib/bin/
+/vitamio_lib/gen/
