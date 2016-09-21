@@ -15,6 +15,8 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.FrameLayout;
+import android.widget.GridView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -26,7 +28,7 @@ import java.util.ArrayList;
 
 public class ViewPagerFragment extends Fragment {
 
-    private ReboundViewPager viewPager;
+    private ViewPager viewPager;
     private TextView tips; //viewpager indicator
     private ArrayList<String> imgs;
     private Info imageInfo;
@@ -50,7 +52,7 @@ public class ViewPagerFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        viewPager = (ReboundViewPager) view.findViewById(R.id.viewpager_piclooker);
+        viewPager = (ViewPager) view.findViewById(R.id.viewpager_piclooker);
         tips = (TextView) view.findViewById(R.id.tv_piclooker_index);
         mask = view.findViewById(R.id.view_piclooker_back);
 
@@ -64,7 +66,9 @@ public class ViewPagerFragment extends Fragment {
         position = bundle.getInt("position", 0);
         tips.setText((position + 1) + "/" + imgs.size());
 
-        viewPager.getOverscrollView().setAdapter(new PagerAdapter() {
+        viewPager.setOverScrollMode(ViewPager.OVER_SCROLL_NEVER);
+//        viewPager.getOverscrollView().setAdapter(new PagerAdapter() {
+        viewPager.setAdapter(new PagerAdapter() {
             @Override
             public int getCount() {
                 return imgs.size();
@@ -115,7 +119,8 @@ public class ViewPagerFragment extends Fragment {
             }
         });
 
-        viewPager.getOverscrollView().addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//        viewPager.getOverscrollView().addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -133,7 +138,8 @@ public class ViewPagerFragment extends Fragment {
         });
 
         //set current position
-        viewPager.getOverscrollView().setCurrentItem(position);
+//        viewPager.getOverscrollView().setCurrentItem(position);
+        viewPager.setCurrentItem(position);
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {

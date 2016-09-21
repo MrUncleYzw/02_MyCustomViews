@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
@@ -56,7 +58,8 @@ public class PicGridAdapter extends BaseAdapter {
             float sum = parent.getContext().getResources().getDisplayMetrics().widthPixels -
                     parent.getContext().getResources().getDimensionPixelSize(R.dimen.dip_50);
             int width = (int) (sum / 3);
-            p.setLayoutParams(new AbsListView.LayoutParams(width, width));
+            AbsListView.LayoutParams params = new AbsListView.LayoutParams(width, width);
+            p.setLayoutParams(params);
             p.setScaleType(ImageView.ScaleType.CENTER_CROP);
             convertView = p;
         }
