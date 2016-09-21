@@ -26,6 +26,7 @@
         <activity android:name=".ui.activity.PtrDemoActivity"/>
         <activity android:name=".ui.activity.PicChoserActivity"/>
         <activity android:name=".ui.activity.PicLookerActivity"/>
+        <activity android:name=".ui.activity.RealmStudyActivity"/>
 
     </application>
 

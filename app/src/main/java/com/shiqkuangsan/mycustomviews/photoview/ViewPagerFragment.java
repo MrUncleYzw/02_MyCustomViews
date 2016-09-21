@@ -78,13 +78,13 @@ public class ViewPagerFragment extends Fragment {
             @Override
             public Object instantiateItem(ViewGroup container, int pos) {
                 View view = LayoutInflater.from(getActivity()).inflate(R.layout.layout_view_detail, null, false);
-                final PhotoView photoView = (PhotoView) view.findViewById(R.id.iv_piclooker_detail);
+                final PhotoView myPhotoView = (PhotoView) view.findViewById(R.id.iv_piclooker_detail);
                 final MaterialProgressBar progressBar = (MaterialProgressBar) view.findViewById(R.id.pb_piclooker);
                 if (position == pos && ImageLoader.getInstance().getDiscCache().get(imgs.get(pos)) != null) {//only animate when position equals u click in pre layout
-                    photoView.animaFrom(imageInfo);
+                    myPhotoView.animaFrom(imageInfo);
                 }
                 //load pic from remote
-                ImageLoader.getInstance().displayImage(imgs.get(pos), photoView,
+                ImageLoader.getInstance().displayImage(imgs.get(pos), myPhotoView,
                         new DisplayImageOptions.Builder()
                                 .cacheInMemory(true)
                                 .cacheOnDisc(true)
@@ -98,12 +98,12 @@ public class ViewPagerFragment extends Fragment {
                         });
 
                 //force to get focal point,to listen key listener
-                photoView.setFocusableInTouchMode(true);
-                photoView.requestFocus();
-                photoView.setOnKeyListener(pressKeyListener);//add key listener to listen back press
-                photoView.setOnClickListener(onClickListener);
-                photoView.setTag(pos);
-                photoView.enable();
+                myPhotoView.setFocusableInTouchMode(true);
+                myPhotoView.requestFocus();
+                myPhotoView.setOnKeyListener(pressKeyListener);//add key listener to listen back press
+                myPhotoView.setOnClickListener(onClickListener);
+                myPhotoView.setTag(pos);
+                myPhotoView.enable();
                 container.addView(view);
 
                 return view;

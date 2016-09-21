@@ -39,7 +39,7 @@ public class SwitchPictureActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_switchpicture);
 
-        pager = (ViewPager) findViewById(R.id.viewpager_piclooker);
+        pager = (ViewPager) findViewById(R.id.viewpager_pics);
         tv_msg = (TextView) findViewById(R.id.tv_desc);
         ll_point_container = (LinearLayout) findViewById(R.id.ll_point_container);
         // 要给这个线性下面加几个小白点, 当前界面显示哪个图片,对应位置的小白点就变亮,

@@ -10,7 +10,7 @@ import com.shiqkuangsan.mycustomviews.R;
 import com.shiqkuangsan.mycustomviews.base.BaseActivity;
 import com.shiqkuangsan.mycustomviews.utils.AnimationUtil;
 
-// 演示炫酷菜单的界面
+// 主界面,并且负责演示炫酷菜单
 public class MainActivity extends BaseActivity {
 
     private RelativeLayout rl_level1;
@@ -199,6 +199,15 @@ public class MainActivity extends BaseActivity {
      */
     public void piclooker(View view) {
         startActivity(new Intent(this, PicLookerActivity.class));
+    }
+
+    /**
+     * 图片查看
+     *
+     * @param view
+     */
+    public void realm(View view) {
+        startActivity(new Intent(this, RealmStudyActivity.class));
     }
 
 }
