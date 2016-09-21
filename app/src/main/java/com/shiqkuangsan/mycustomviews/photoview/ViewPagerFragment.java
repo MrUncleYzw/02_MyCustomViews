@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class ViewPagerFragment extends Fragment {
 
-    private ViewPager viewPager;
+    private MyViewPager viewPager;
     private TextView tips; //viewpager indicator
     private ArrayList<String> imgs;
     private Info imageInfo;
@@ -52,7 +52,7 @@ public class ViewPagerFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        viewPager = (ViewPager) view.findViewById(R.id.viewpager_piclooker);
+        viewPager = (MyViewPager) view.findViewById(R.id.viewpager_piclooker);
         tips = (TextView) view.findViewById(R.id.tv_piclooker_index);
         mask = view.findViewById(R.id.view_piclooker_back);
 
@@ -66,8 +66,7 @@ public class ViewPagerFragment extends Fragment {
         position = bundle.getInt("position", 0);
         tips.setText((position + 1) + "/" + imgs.size());
 
-        viewPager.setOverScrollMode(ViewPager.OVER_SCROLL_NEVER);
-//        viewPager.getOverscrollView().setAdapter(new PagerAdapter() {
+        viewPager.setpagerCount(imgs.size());
         viewPager.setAdapter(new PagerAdapter() {
             @Override
             public int getCount() {
@@ -119,7 +118,6 @@ public class ViewPagerFragment extends Fragment {
             }
         });
 
-//        viewPager.getOverscrollView().addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -129,6 +127,7 @@ public class ViewPagerFragment extends Fragment {
             @Override
             public void onPageSelected(int position) {
                 tips.setText((position + 1) + "/" + imgs.size());
+                viewPager.setCurrentIndex(position);
             }
 
             @Override

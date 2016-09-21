@@ -10,7 +10,7 @@
         android:background="@android:color/black"
         android:visibility="visible" />
 
-    <android.support.v4.view.ViewPager
+    <com.shiqkuangsan.mycustomviews.photoview.MyViewPager
         android:id="@+id/viewpager_piclooker"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
