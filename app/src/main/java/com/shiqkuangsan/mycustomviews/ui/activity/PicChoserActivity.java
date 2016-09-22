@@ -24,10 +24,6 @@ import static android.R.attr.start;
  */
 public class PicChoserActivity extends BaseActivity {
 
-    private static final int PHOTO_REQUEST_GALLERY = 100;
-    private static final int PHOTO_REQUEST_CAREMA = 101;
-    private static final int PHOTO_REQUEST_CUT = 102;
-
     private Button btn_gallery_chose;
     private Button btn_camera_chose;
     /**
