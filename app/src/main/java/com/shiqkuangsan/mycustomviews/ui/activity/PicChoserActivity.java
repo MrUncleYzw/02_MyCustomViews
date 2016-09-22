@@ -20,7 +20,7 @@ import static android.R.attr.start;
  */
 
 /**
- * 图片选择演示界面
+ * 图片选择演示界面,其中有个按钮使用三方类库可以选图演示发说说
  */
 public class PicChoserActivity extends BaseActivity {
 
