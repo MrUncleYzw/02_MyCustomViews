@@ -4,17 +4,21 @@ package com.shiqkuangsan.mycustomviews.utils;
  * Created by shiqkuangsan on 2016/9/6.
  */
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Bundle;
+import android.os.Build;
 import android.os.Environment;
-import android.os.Parcelable;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
 import java.io.File;
@@ -24,7 +28,10 @@ import java.io.FileNotFoundException;
  * 选择图片的工具类
  * pic1. 在你的两个选择按钮分别调用startActivityFor()方法传入不同参书选择获取方式进入对应界面
  * 2. 在你的onActivityResult()方法处调用getBitmapFromResult()方法,将会获取到选择的图片的bitmap对象,直接使用即可.
- * 如果调用getPathFromResult()方法,将会获取到图片的路径(后者不支持裁剪且从相册获取使用过之后若想删除缓存需要调用deleteTemp())
+ * 如果调用getPathFromResult()方法,将会获取到图片的路径
+ * (后者不支持裁剪且从相册获取使用过之后,使用过之后,使用过之后若想删除缓存需要手动调用deleteTemp())
+ *
+ * 关于android6.0动态权限申请的问题,图库选择图片的逻辑已经处理了,拍照获取大多定制机目前不需要处理,暂且是注释状态
  */
 public class ChosePicUtil {
 
@@ -41,23 +48,32 @@ public class ChosePicUtil {
     /**
      * 从图库获取的请求码
      */
-    public static final int REQUEST_CODE_GALLERY = 100;
+    private static final int REQUEST_CODE_GALLERY = 100;
 
     /**
      * 从相机获取的请求码
      */
-    public static final int REQUEST_CODE_CAMERA = 200;
+    private static final int REQUEST_CODE_CAMERA = 200;
 
     /**
      * 进入裁剪界面的请求码
      */
-    public static final int REQUEST_CODE_CROP = 300;
+    private static final int REQUEST_CODE_CROP = 300;
 
     /**
      * 临时存储的文件对象
      */
-    public static File tempFile;
+    private static File tempFile;
 
+    /**
+     * 6.0相机权限请求码
+     */
+    public static final int REQUEST_PERMISSION_CAMERA_6_0 = 400;
+
+    /**
+     * 6.0读写SD卡权限请求码
+     */
+    public static final int REQUEST_PERMISSION_SDCARD_6_0 = 500;
 
     /**
      * 根据不同匹配码确定是从图库选择还是相机获取,并启动相应activity
@@ -67,26 +83,81 @@ public class ChosePicUtil {
     public static void startActivityFor(int MATCHING_CODE, Activity activity) {
         switch (MATCHING_CODE) {
             case MATCHING_CODE_GALLERY:
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK);
-                galleryIntent.setType("image/*");
-                activity.startActivityForResult(galleryIntent, REQUEST_CODE_GALLERY);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+                        openGallery(activity);
+                    else {
+                        // 该方法在用户上次拒绝后调用,因为已经拒绝了这次你还要申请授权你得给用户解释一波
+                        if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                            // Show an explanation to the user *asynchronously* -- don't block
+                            // this thread waiting for the user's response! After the user
+                            // sees the explanation, try again to request the permission.
+                        } else {
+                            // 申请授权
+                            ActivityCompat.requestPermissions(activity,
+                                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSION_SDCARD_6_0);
+                        }
+                    }
+                    return;
+                }
+                openGallery(activity);
                 break;
 
             case MATCHING_CODE_CAMERA:
-                // 激活相机并判断存储卡是否可以用
-                if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                    Intent cameraIntent = new Intent("android.media.action.IMAGE_CAPTURE");
-                    if (tempFile != null)
-                        tempFile = null;
-                    // 创建资源标识,设置额外信息
-                    tempFile = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
-                    Uri uri = Uri.fromFile(tempFile);
-                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-                    activity.startActivityForResult(cameraIntent, REQUEST_CODE_CAMERA);
-                } else
-                    Toast.makeText(activity, "未检测到储存卡", Toast.LENGTH_SHORT).show();
+                // 6.0调用相机的处理, 部分国产机子不需要这个验证,暂且注释
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                    if (ContextCompat.checkSelfPermission(activity, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)
+//                        openGallery(activity);
+//                    else {
+//                        // 该方法在用户上次拒绝后调用,因为已经拒绝了这次你还要申请授权你得给用户解释一波
+//                        if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.CAMERA)) {
+//
+//                        } else {
+//                            // 申请授权
+//                            ActivityCompat.requestPermissions(activity,
+//                                    new String[]{Manifest.permission.CAMERA}, REQUEST_PERMISSION_CAMERA_6_0);
+//                        }
+//                    }
+//                    return;
+//                }
+
+                // 6.0之前的版本直接走这里
+                openCamera(activity);
                 break;
         }
+    }
+
+    /**
+     * 打开系统图库
+     *
+     * @param activity activity
+     */
+    public static void openGallery(Activity activity) {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+        galleryIntent.setType("image/*");
+        activity.startActivityForResult(galleryIntent, REQUEST_CODE_GALLERY);
+    }
+
+
+    /**
+     * 打开系统相机
+     *
+     * @param activity activity
+     */
+    public static void openCamera(Activity activity) {
+        // 6.0之前,激活相机并判断存储卡是否可以用
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            Intent cameraIntent = new Intent("android.media.action.IMAGE_CAPTURE");
+            if (tempFile != null)
+                tempFile = null;
+            // 创建资源标识,设置额外信息
+            tempFile = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
+            Uri uri = Uri.fromFile(tempFile);
+            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+            activity.startActivityForResult(cameraIntent, REQUEST_CODE_CAMERA);
+        } else
+            Toast.makeText(activity, "未检测到储存卡", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -260,4 +331,35 @@ public class ChosePicUtil {
             result = tempFile.delete();
         return result;
     }
+
+    /**
+     * 申请权限返回结果时调用,用户是否同意
+     *
+     * @param requestCode  之前申请权限的请求码
+     * @param permissions  申请的权限
+     * @param grantResults 依次申请的结果
+     * @param activity     activity
+     */
+    public static void onActRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                                     @NonNull int[] grantResults, Activity activity) {
+        switch (requestCode) {
+            // 如果是请求打开相机的请求码
+            case REQUEST_PERMISSION_CAMERA_6_0:
+                // 因为你可以一次申请多个权限, 所以返回结果的是一个数组
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    openCamera(activity);
+                else
+                    Toast.makeText(activity, "请先允许拍照权限 !", Toast.LENGTH_SHORT).show();
+                break;
+
+            case REQUEST_PERMISSION_SDCARD_6_0:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    openGallery(activity);
+                else
+                    Toast.makeText(activity, "请先允许读取内存权限 !", Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+    }
+
 }

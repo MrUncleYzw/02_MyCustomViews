@@ -3,6 +3,7 @@ package com.shiqkuangsan.mycustomviews.ui.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,8 +11,7 @@ import android.widget.ImageView;
 import com.shiqkuangsan.mycustomviews.R;
 import com.shiqkuangsan.mycustomviews.base.BaseActivity;
 import com.shiqkuangsan.mycustomviews.utils.ChosePicUtil;
-
-import java.io.File;
+import com.shiqkuangsan.mycustomviews.utils.MyLogUtil;
 
 /**
  * Created by dell on 2016/9/6.
@@ -72,6 +72,7 @@ public class PicChoserActivity extends BaseActivity {
         if (bitmap != null)
             iv_image.setImageBitmap(bitmap);
 
+        // 使用ChosePicUtil   方式2
 //        String path = ChosePicUtil.getPathFromResult(requestCode, resultCode, data, this);
 //        iv_image.setImageBitmap(BitmapFactory.decodeFile(path));
 //        ChosePicUtil.deleteTemp();
@@ -79,4 +80,8 @@ public class PicChoserActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        ChosePicUtil.onActRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
 }
