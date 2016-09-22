@@ -13,6 +13,8 @@ import com.shiqkuangsan.mycustomviews.base.BaseActivity;
 import com.shiqkuangsan.mycustomviews.utils.ChosePicUtil;
 import com.shiqkuangsan.mycustomviews.utils.MyLogUtil;
 
+import static android.R.attr.start;
+
 /**
  * Created by dell on 2016/9/6.
  */
@@ -32,6 +34,7 @@ public class PicChoserActivity extends BaseActivity {
      * 临时file对象,记录图片路径
      */
     private ImageView iv_image;
+    private Button btn_lib_chose;
 
     @Override
     public void initView() {
@@ -39,6 +42,7 @@ public class PicChoserActivity extends BaseActivity {
 
         btn_gallery_chose = (Button) findViewById(R.id.btn_gallery_chose);
         btn_camera_chose = (Button) findViewById(R.id.btn_camera_chose);
+        btn_lib_chose = (Button) findViewById(R.id.btn_lib_chose);
         iv_image = (ImageView) findViewById(R.id.iv_image);
     }
 
@@ -46,6 +50,7 @@ public class PicChoserActivity extends BaseActivity {
     public void initDataAndListener() {
         btn_gallery_chose.setOnClickListener(this);
         btn_camera_chose.setOnClickListener(this);
+        btn_lib_chose.setOnClickListener(this);
     }
 
 
@@ -60,6 +65,11 @@ public class PicChoserActivity extends BaseActivity {
             // 拍照获取
             case R.id.btn_camera_chose:
                 ChosePicUtil.startActivityFor(ChosePicUtil.MATCHING_CODE_CAMERA, this);
+                break;
+
+            // 使用人家的类库
+            case R.id.btn_lib_chose:
+                startActivity(new Intent(this, MomentListActivity.class));
                 break;
         }
     }

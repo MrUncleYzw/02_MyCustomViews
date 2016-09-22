@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary_light">#9d3f51b5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="color_press_menu_tab">#33ADCFD6</color>
+    <color name="color_orange_deep">#f57257</color>
+    <color name="color_orange">#9ef57257</color>
 </resources>

@@ -5,7 +5,10 @@ import android.graphics.Bitmap;
 import android.os.Environment;
 import android.widget.ImageView;
 
-import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
+import com.nostra13.universalimageloader.cache.disc.impl.LimitedAgeDiskCache;
+import com.nostra13.universalimageloader.cache.disc.impl.ext.LruDiskCache;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -13,6 +16,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
+import com.nostra13.universalimageloader.utils.DiskCacheUtils;
 
 import org.xutils.common.util.DensityUtil;
 import org.xutils.image.ImageOptions;
@@ -42,17 +46,17 @@ public class MyApplication extends Application {
                 .memoryCacheExtraOptions(480, 800) // max width, max height，即保存的每个缓存文件的最大长宽
                 //.discCacheExtraOptions(480, 800, CompressFormat.JPEG, 75, null) // Can slow ImageLoader, use it carefully (Better don't use it)/设置缓存的详细信息，最好不要设置这个
                 .threadPoolSize(3)//线程池内加载的数量
-                .threadPriority(Thread.NORM_PRIORITY - 2)
+                .threadPriority(Thread.NORM_PRIORITY - 2)// 线程优先级
                 .denyCacheImageMultipleSizesInMemory()
-                //.memoryCache(new UsingFreqLimitedMemoryCache(2 * 1024 * 1024)) // You can pass your own memory cache implementation/你可以通过自己的内存缓存实现
+//                .memoryCache(new UsingFreqLimitedMemoryCache(2 * 1024 * 1024)) // You can pass your own memory cache implementation/你可以通过自己的内存缓存实现
                 .memoryCache(new WeakMemoryCache())
-                .memoryCacheSize(2 * 1024 * 1024)
-                .discCacheSize(50 * 1024 * 1024)
-                //.discCacheFileNameGenerator(new Md5FileNameGenerator())//将保存的时候的URI名称用MD5 加密
+                .memoryCacheSize(2 * 1024 * 1024)// 内存缓存2MB
                 .tasksProcessingOrder(QueueProcessingType.LIFO)
-                .discCacheFileCount(100) //缓存的文件数量
-                .discCache(new UnlimitedDiscCache(cacheDir))//自定义缓存路径
-                .defaultDisplayImageOptions(DisplayImageOptions.createSimple())
+//                .diskCache(new LruDiskCache(cacheDir, new Md5FileNameGenerator(),50*1024*1024))// 有异常
+                .diskCache(new LimitedAgeDiskCache(cacheDir, 7 * 24 * 60 * 60))// 限制缓存时长
+                .diskCacheSize(50 * 1024 * 1024)// 本地缓存50MB
+                .diskCacheFileNameGenerator(new Md5FileNameGenerator())// MD5加密名字
+                .defaultDisplayImageOptions(DisplayImageOptions.createSimple())// 设置默认选项
                 .imageDownloader(new BaseImageDownloader(getApplicationContext(), 5 * 1000, 20 * 1000)) // connectTimeout (5 s), readTimeout (30 s)超时时间
                 //.writeDebugLogs() // Remove for release app
                 .build();//开始构建

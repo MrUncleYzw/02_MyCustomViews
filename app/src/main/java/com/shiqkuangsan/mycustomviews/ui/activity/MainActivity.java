@@ -206,8 +206,8 @@ public class MainActivity extends BaseActivity {
      *
      * @param view
      */
-    public void realm(View view) {
-        startActivity(new Intent(this, RealmStudyActivity.class));
+    public void xutils(View view) {
+        startActivity(new Intent(this, XUtilsActivity.class));
     }
 
 }

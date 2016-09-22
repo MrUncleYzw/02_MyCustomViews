@@ -2,17 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shiqkuangsan.mycustomviews">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".MyApplication"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.MainActivity">
+        android:theme="@style/theme_withactionbar">
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,13 +23,21 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.SwitchPictureActivity" />
-        <activity android:name=".ui.activity.MyOnOffActivity"/>
-        <activity android:name=".ui.activity.PullRefreshActivity"/>
-        <activity android:name=".ui.activity.SlideMenuActivity"/>
-        <activity android:name=".ui.activity.PtrDemoActivity"/>
-        <activity android:name=".ui.activity.PicChoserActivity"/>
-        <activity android:name=".ui.activity.PicLookerActivity"/>
-        <activity android:name=".ui.activity.RealmStudyActivity"/>
+        <activity android:name=".ui.activity.MyOnOffActivity" />
+        <activity android:name=".ui.activity.PullRefreshActivity" />
+        <activity android:name=".ui.activity.SlideMenuActivity" />
+        <activity android:name=".ui.activity.PtrDemoActivity" />
+        <activity android:name=".ui.activity.PicChoserActivity" />
+        <activity
+            android:name=".ui.activity.PicLookerActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.activity.XUtilsActivity" />
+        <activity
+            android:name=".ui.activity.MomentListActivity"
+            android:theme="@style/theme_picchose_act" />
+        <activity
+            android:name=".ui.activity.MomentAddActivity"
+            android:theme="@style/theme_picchose_act" />
 
     </application>
 

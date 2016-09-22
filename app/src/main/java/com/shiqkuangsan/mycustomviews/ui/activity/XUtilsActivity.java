@@ -9,9 +9,9 @@ import com.shiqkuangsan.mycustomviews.base.BaseActivity;
  */
 
 /**
- * 学习使用Realm的界面
+ * 学习使用xUtils的界面
  */
-public class RealmStudyActivity extends BaseActivity{
+public class XUtilsActivity extends BaseActivity{
 
     @Override
     public void initView() {

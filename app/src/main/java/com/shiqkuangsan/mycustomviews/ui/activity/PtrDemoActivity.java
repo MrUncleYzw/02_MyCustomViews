@@ -14,6 +14,8 @@ import com.shiqkuangsan.mycustomviews.utils.DPPXUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
 import in.srain.cube.views.ptr.header.MaterialHeader;
@@ -66,20 +68,20 @@ public class PtrDemoActivity extends BaseActivity {
         header.setPtrFrameLayout(mPtrFrameLayout);
 
         mPtrFrameLayout.setLoadingMinTime(1000);
-//        mPtrFrameLayout.setDurationToCloseHeader(1500);
+        mPtrFrameLayout.setDurationToCloseHeader(1500);
         mPtrFrameLayout.setHeaderView(header);
         mPtrFrameLayout.addPtrUIHandler(header);
         mPtrFrameLayout.postDelayed(new Runnable() {
             @Override
             public void run() {
-                mPtrFrameLayout.autoRefresh(false);
+                mPtrFrameLayout.autoRefresh(true);
             }
         }, 100);
 
         mPtrFrameLayout.setPtrHandler(new PtrHandler() {
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-                return true;
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
             }
 
             @Override

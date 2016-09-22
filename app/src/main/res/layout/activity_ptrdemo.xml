@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp">
+    android:layout_height="match_parent">
 
-    <in.srain.cube.views.ptr.PtrFrameLayout xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+    <in.srain.cube.views.ptr.PtrFrameLayout
         android:id="@+id/ptr_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,15 +13,15 @@
         cube_ptr:ptr_keep_header_when_refresh="true"
         cube_ptr:ptr_pull_to_fresh="false"
         cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
-        cube_ptr:ptr_resistance="1.7">
+        cube_ptr:ptr_resistance="2.5">
 
         <ListView
             android:id="@+id/lv_ptrdemo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:divider="@android:color/transparent"
             android:layout_marginRight="20dp"
+            android:divider="@android:color/transparent"
             android:dividerHeight="10dp" />
 
     </in.srain.cube.views.ptr.PtrFrameLayout>
