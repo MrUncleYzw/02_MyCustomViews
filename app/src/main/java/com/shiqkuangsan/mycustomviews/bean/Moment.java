@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 
 /**
- * 发送内容的bean类,说说 + 图片(String)
+ * 发送内容封装成的bean类,说说 + 图片(String)
  */
 public class Moment implements Parcelable {
     public String content;

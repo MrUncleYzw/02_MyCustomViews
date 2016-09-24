@@ -826,9 +826,33 @@ Theme.Sherlock.Light.DarkActionBar无法找到
 
 			android:name=".MyApplication"
 
+ 
+> 简单的使用, xUtls分为四大模块:注解模块(常用的是View注解和onClick注解)、网络模块(网络请求和上传下载)、图片模块(这个就是设置option加载图片)、数据库模块
 
-> 简单的使用
+1. 注解模块
+在activity的onCreate()方法中注入事件     x.view().inject(this);  
 
+		@ViewInject(R.id.btn_get)  
+	    Button btn_get;  
+	    @ViewInject(R.id.btn_post)  
+	    Button btn_post;  
+		
+		@Event(value={R.id.btn_get,R.id.btn_post},type=View.OnClickListener.class)  
+		// 上面的是完整模式,默认是设置OnClickListener
+	    @Event(value={R.id.btn_get,R.id.btn_post})  
+	    private void getEvent(View view){  
+	        switch(view.getId()){  
+	        case R.id.btn_get:  
+	            break;  
+	        case R.id.btn_post:  
+	            break;  
+	        }  
+	    }
+
+2. 网络模块
+compile 'com.alibaba:fastjson:1.2.17'
+
+	(1) 网络请求
 
 ---
 

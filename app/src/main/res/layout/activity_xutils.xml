@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_xutils_sendget"
+            style="@style/style_nomal_btn_nowidth"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="get请求" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btn_xutils_sendpost"
+            style="@style/style_nomal_btn_nowidth"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="post请求" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_xutils_upload"
+            style="@style/style_nomal_btn_nowidth"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="上传文件" />
+
+        <TextView
+            android:id="@+id/tv_xutils_progress"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0%"
+            android:textColor="#818181"
+            android:textSize="20sp"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/btn_xutils_download"
+            style="@style/style_nomal_btn_nowidth"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="下载文件" />
+    </LinearLayout>
+
+
+</LinearLayout>
