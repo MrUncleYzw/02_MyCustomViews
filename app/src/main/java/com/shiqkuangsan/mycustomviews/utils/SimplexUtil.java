@@ -1,6 +1,6 @@
 package com.shiqkuangsan.mycustomviews.utils;
 
-import android.os.Environment;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
@@ -29,10 +29,10 @@ public class SimplexUtil {
      * 发送一个get请求
      *
      * @param params   请求参数,通过构建者模式创建 new SimpleRequestParams.Builder().addxxx().build()获得
-     * @param callback 请求回调,简单的可以直接new SimpleRequstCallBack<T>(),自己重写需要的方法,你也可以使用原来
-     *                 的new Callback.CommonCallback<T>()
+     * @param callback 请求回调,简单的可以直接new SimpleRequstCallBack< T >(),自己重写需要的方法,你也可以使用原来
+     *                 的new Callback.CommonCallback< T >()
      * @param <T>      请求返回类型,这个很重要,一般都写String然后回拿到json数据的字符串, 然后自行解析.
-     *                 但是比如说我要直接获得一个集合List<bean>,或者直接获得一个bean类,那么你的bean类就得
+     *                 但是比如说我要直接获得一个集合List< bean >,或者直接获得一个bean类,那么你的bean类就得
      *                 添加注解@HttpResponse(parser =  JsonResponseParser.class),利用fastjson返回几行代码搞定
      *                 这里一定要注意你的bean类要和json数据对应
      * @return 请求Cancelable, 可以调用cancel()方法中断请求
@@ -46,10 +46,10 @@ public class SimplexUtil {
      * 发送一个post请求
      *
      * @param params   请求参数,通过构建者模式创建 new SimpleRequestParams.Builder().addxxx().build()获得
-     * @param callback 请求回调,简单的可以直接new SimpleRequstCallBack<T>(),自己重写需要的方法,你也可以使用原来
-     *                 的new Callback.CommonCallback<T>()
+     * @param callback 请求回调,简单的可以直接new SimpleRequstCallBack< T >(),自己重写需要的方法,你也可以使用原来
+     *                 的new Callback.CommonCallback< T >()
      * @param <T>      请求返回类型,这个很重要,一般都写String然后回拿到json数据的字符串, 然后自行解析.
-     *                 但是比如说我要直接获得一个集合List<bean>,或者直接获得一个bean类,那么你的bean类就得
+     *                 但是比如说我要直接获得一个集合List< bean >,或者直接获得一个bean类,那么你的bean类就得
      *                 添加注解@HttpResponse(parser =  JsonResponseParser.class),利用fastjson返回几行代码搞定
      *                 这里一定要注意你的bean类要和json数据对应
      * @return 请求Cancelable, 可以调用cancel()方法中断请求
@@ -160,7 +160,7 @@ public class SimplexUtil {
      * @param url       上传url
      * @param paramName 参数名
      * @param file      文件对象
-     * @param callback  请求回调,简单的可以直接new SimpleUploadCallBack(),自己重写需要的方法
+     * @param callback  请求回调,简单的可以直接new SimpleFileCallBack< T >(),自己重写需要的方法.泛型一般File
      * @param <T>       返回泛型
      * @return Cancelable对象, 可以调用cancel()方法撤销请求
      */
@@ -177,7 +177,7 @@ public class SimplexUtil {
      *
      * @param url      上传url
      * @param filePath 文件的保存路径
-     * @param callback 请求回调,简单的可以直接new SimpleUploadCallBack(),自己重写需要的方法
+     * @param callback 请求回调,简单的可以直接new SimpleFileCallBack< T >(),自己重写需要的方法.泛型一般File
      * @param <T>      返回泛型
      * @return Cancelable对象, 可以调用cancel()方法撤销请求
      */
@@ -233,6 +233,17 @@ public class SimplexUtil {
         }
     }
 
+
+    /**
+     * 加载网络图片的方法,
+     * @param image 展示的ImageView
+     * @param url 请求链接
+     * @param options 加载参数
+     * @param callback 请求回调,可以直接new SimpleFileCallBack< Drawable >(),泛型是规定必须Drawable
+     */
+    public static void loadImage(ImageView image, String url, ImageOptions options, Callback.CommonCallback<Drawable> callback) {
+        x.image().bind(image, url, options, callback);
+    }
 
     /**
      * xUtils3图片的默认配置

@@ -26,6 +26,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Random;
 
+import static android.R.attr.x;
 import static com.shiqkuangsan.mycustomviews.R.id.btn_xutils_db;
 
 /**
@@ -99,17 +100,17 @@ public class XUtilsActivity extends AppCompatActivity {
 
             // 展示图片
             case R.id.btn_xutils_image:
-                x.image().bind(iv_xutils_display, Constant.display_image_url, SimplexUtil.getSimpleImageOption());
+                SimplexUtil.loadImage(iv_xutils_display, Constant.display_image_url, SimplexUtil.getSimpleImageOption(), null);
                 break;
 
             // 展示圆形图片
             case R.id.btn_xutils_circle:
-                x.image().bind(iv_xutils_display, Constant.display_circlr_image_url, SimplexUtil.getSimpleCircleImageOption());
+                SimplexUtil.loadImage(iv_xutils_display, Constant.display_circlr_image_url, SimplexUtil.getSimpleCircleImageOption(), null);
                 break;
 
             // 展示gif图片
             case R.id.btn_xutils_gif:
-                x.image().bind(iv_xutils_display, Constant.display_gif_url, SimplexUtil.getSimpleImageOption());
+                SimplexUtil.loadImage(iv_xutils_display, Constant.display_gif_url, SimplexUtil.getSimpleImageOption(), null);
                 break;
 
             // 创建数据库
@@ -204,9 +205,9 @@ public class XUtilsActivity extends AppCompatActivity {
      */
     private void sendGetRequest() {
         SimplexUtil.sendGet(new SimplexUtil.SimpleRequestParams.Builder(Constant.mlnx_province_url)
-//                        .addHeader("", "")// 为了演示用法
-//                        .addQueryStringParameter("", "")
-//                        .addBodyParameter("", "")
+                        .addHeader("", "")// 为了演示用法
+                        .addQueryStringParameter("", "")
+                        .addBodyParameter("", "")
                         .build(),
 
                 new SimplexUtil.SimpleRequstCallBack<List<Province>>() {
