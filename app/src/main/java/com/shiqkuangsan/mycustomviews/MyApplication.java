@@ -81,21 +81,4 @@ public class MyApplication extends Application {
                 .build();
     }
 
-    /**
-     * xUtils3图片的默认配置
-     *
-     * @return xUtils3图片的默认配置
-     */
-    public static ImageOptions getxUtilsPicOption() {
-        return new ImageOptions.Builder()
-                .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
-                .setRadius(DensityUtil.dip2px(5))
-                .setIgnoreGif(false)
-                .setCrop(true)//是否对图片进行裁剪
-                .setLoadingDrawableId(R.drawable.pic_loading)
-                .setFailureDrawableId(R.drawable.pic_loading_fail)
-                .setUseMemCache(true)
-                .build();
-    }
-
 }
