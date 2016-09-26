@@ -9,12 +9,11 @@ import android.widget.TextView;
 
 import com.shiqkuangsan.mycustomviews.R;
 import com.shiqkuangsan.mycustomviews.base.BaseActivity;
-import com.shiqkuangsan.mycustomviews.utils.DPPXUtil;
+import com.shiqkuangsan.mycustomviews.utils.Dp2PxUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
@@ -64,7 +63,7 @@ public class PtrDemoActivity extends BaseActivity {
         int[] colors = {Color.RED, Color.BLUE, Color.YELLOW, Color.GREEN};
         header.setColorSchemeColors(colors);
         header.setLayoutParams(new PtrFrameLayout.LayoutParams(-1, -2));
-        header.setPadding(0, DPPXUtil.dip2qx(this, 15), 0, DPPXUtil.dip2qx(this, 10));
+        header.setPadding(0, Dp2PxUtil.dip2qx(this, 15), 0, Dp2PxUtil.dip2qx(this, 10));
         header.setPtrFrameLayout(mPtrFrameLayout);
 
         mPtrFrameLayout.setLoadingMinTime(1000);

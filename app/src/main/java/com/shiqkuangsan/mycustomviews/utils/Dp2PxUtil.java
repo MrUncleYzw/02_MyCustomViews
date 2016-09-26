@@ -3,19 +3,15 @@ package com.shiqkuangsan.mycustomviews.utils;
 import android.content.Context;
 
 /**
- * dp - px  ��ת���Ĺ�����
- *
- * @author shiqkuangsan
- */
-
-/**
  * dp - px  的转换的工具类
- * @author shiqkuangsan
  *
+ * @author shiqkuangsan
  */
-public class DPPXUtil {
+public class Dp2PxUtil {
+
     /**
      * 根据手机的分辨率从 dip 的单位 转成为 px(像素)
+     *
      * @return
      */
     public static int dip2qx(Context context, float dpValue) {

@@ -794,6 +794,19 @@ fastjson
 
 ---
 
+## AS中代码配置java和jni路径
+
+在defaultConfig方法下添加
+
+		sourceSets {
+            main {
+                jniLibs.srcDirs = ['libs']
+                java.srcDirs = ['src/main/java']
+            }
+        } 
+
+---
+
 ## AndroidSDK/tools/有个hierarchyviewer
 
 这玩意叫做视图树, 作用是观察当前App的进程的分支结构.
