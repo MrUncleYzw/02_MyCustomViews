@@ -1,9 +1,8 @@
-package com.shiqkuangsan.mycustomviews.custom;
+package com.shiqkuangsan.mycustomviews.ui.custom;
 
 import android.content.Context;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsListView;
@@ -18,7 +17,10 @@ import com.shiqkuangsan.mycustomviews.utils.AnimationUtil;
 /**
  * Created by shiqkuangsan on 2016/5/6.
  */
-// 演示下拉刷新和下拉加载的界面
+
+/**
+ * 演示下拉刷新和下拉加载的界面
+ */
 public class MyPullRefreshListView extends ListView implements AbsListView.OnScrollListener {
 
 

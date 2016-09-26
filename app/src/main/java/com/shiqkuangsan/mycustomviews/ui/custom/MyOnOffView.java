@@ -1,4 +1,4 @@
-package com.shiqkuangsan.mycustomviews.custom;
+package com.shiqkuangsan.mycustomviews.ui.custom;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -12,7 +12,10 @@ import android.view.View;
 /**
  * Created by shiqkuangsan on 2016/5/5.
  */
-// 自定义开关控件
+
+/**
+ * 自定义开关控件
+ */
 public class MyOnOffView extends View {
 
     private Bitmap mswitch_bg;

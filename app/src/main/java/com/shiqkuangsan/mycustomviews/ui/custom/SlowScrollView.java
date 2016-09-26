@@ -1,4 +1,4 @@
-package com.shiqkuangsan.mycustomviews.custom;
+package com.shiqkuangsan.mycustomviews.ui.custom;
 
 import android.content.Context;
 import android.util.AttributeSet;

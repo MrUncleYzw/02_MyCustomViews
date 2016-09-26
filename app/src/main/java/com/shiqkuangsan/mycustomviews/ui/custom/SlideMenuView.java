@@ -1,4 +1,4 @@
-package com.shiqkuangsan.mycustomviews.custom;
+package com.shiqkuangsan.mycustomviews.ui.custom;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -12,7 +12,10 @@ import android.widget.Scroller;
 /**
  * Created by shiqkuangsan on 2016/5/6.
  */
-// 演示带左侧滑菜单的界面
+
+/**
+ * 演示带左侧滑菜单的界面
+ */
 public class SlideMenuView extends ViewGroup {
 
     private View leftMenu;
@@ -179,16 +182,16 @@ public class SlideMenuView extends ViewGroup {
      * 根据当前状态弹出还是收回侧滑菜单
      */
     public void changeState() {
-        if(current_mode == IN_MENU_MODE){
+        if (current_mode == IN_MENU_MODE) {
             current_mode = IN_MAIN_MODE;
             gentleScroll();
-        }else {
+        } else {
             current_mode = IN_MENU_MODE;
             gentleScroll();
         }
     }
 
-    public int getCurrent_Mode(){
+    public int getCurrent_Mode() {
         return current_mode;
     }
 
