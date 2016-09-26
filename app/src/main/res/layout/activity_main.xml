@@ -18,7 +18,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:onClick="switchpicture"
-            android:text="切换图片" />
+            android:text="轮播图" />
 
         <Button
             android:layout_width="0dp"
