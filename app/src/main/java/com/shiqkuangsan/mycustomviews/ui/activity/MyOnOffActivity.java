@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.Toast;
 import com.shiqkuangsan.mycustomviews.R;
 import com.shiqkuangsan.mycustomviews.base.BaseActivity;
-import com.shiqkuangsan.mycustomviews.custom.MyOnOffView;
+import com.shiqkuangsan.mycustomviews.ui.custom.MyOnOffView;
 
 /**
  * Created by shiqkuangsan on 2016/5/4.

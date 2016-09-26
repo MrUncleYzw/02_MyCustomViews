@@ -6,7 +6,7 @@ import android.widget.ImageButton;
 
 import com.shiqkuangsan.mycustomviews.R;
 import com.shiqkuangsan.mycustomviews.base.BaseActivity;
-import com.shiqkuangsan.mycustomviews.custom.SlideMenuView;
+import com.shiqkuangsan.mycustomviews.ui.custom.SlideMenuView;
 
 /**
  * Created by shiqkuangsan on 2016/5/6.

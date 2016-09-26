@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.shiqkuangsan.mycustomviews.MyApplication;
 import com.shiqkuangsan.mycustomviews.R;
 import com.shiqkuangsan.mycustomviews.bean.Province;
 import com.shiqkuangsan.mycustomviews.constant.Constant;
@@ -26,7 +28,6 @@ import java.io.File;
 import java.util.List;
 import java.util.Random;
 
-import static android.R.attr.x;
 import static com.shiqkuangsan.mycustomviews.R.id.btn_xutils_db;
 
 /**
@@ -101,6 +102,8 @@ public class XUtilsActivity extends AppCompatActivity {
             // 展示图片
             case R.id.btn_xutils_image:
                 SimplexUtil.loadImage(iv_xutils_display, Constant.display_image_url, SimplexUtil.getSimpleImageOption(), null);
+//                SimplexUtil.loadImage(iv_xutils_display, "file://sdcard/copy.jpg",
+//                        SimplexUtil.getSimpleImageOption(), null);// 加载本地图片,记得前缀file://,最好用Enviroment.get表示sdcard
                 break;
 
             // 展示圆形图片

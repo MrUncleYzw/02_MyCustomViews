@@ -15,6 +15,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.nostra13.universalimageloader.utils.DiskCacheUtils;
 
@@ -72,11 +73,12 @@ public class MyApplication extends Application {
         return new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.pic_loading) //设置图片在下载期间显示的图片
                 .showImageForEmptyUri(R.drawable.pic_loading_fail)//设置图片Uri为空或是错误的时候显示的图片
-                .showImageOnFail(R.drawable.pic_loading_fail)
-                .bitmapConfig(Bitmap.Config.RGB_565)
+                .showImageOnFail(R.drawable.pic_loading_fail)// 失败时显示的图片
+                .bitmapConfig(Bitmap.Config.RGB_565)//
                 .cacheOnDisc(true)// 本地缓存
                 .cacheInMemory(true)// 内存缓存
                 .considerExifParams(true)
+                .displayer(new RoundedBitmapDisplayer(10))// 设置半径为10的圆角
                 .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
                 .build();
     }

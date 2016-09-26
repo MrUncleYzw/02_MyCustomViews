@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.shiqkuangsan.mycustomviews.R;
 import com.shiqkuangsan.mycustomviews.base.BaseActivity;
-import com.shiqkuangsan.mycustomviews.custom.MyPullRefreshListView;
+import com.shiqkuangsan.mycustomviews.ui.custom.MyPullRefreshListView;
 
 import java.util.ArrayList;
 import java.util.List;
