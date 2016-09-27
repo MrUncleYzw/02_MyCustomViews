@@ -38,6 +38,7 @@
         <activity
             android:name=".ui.activity.MomentAddActivity"
             android:theme="@style/theme_picchose_act" />
+        <activity android:name=".ui.activity.CoodinatorActivity" />
 
     </application>
 

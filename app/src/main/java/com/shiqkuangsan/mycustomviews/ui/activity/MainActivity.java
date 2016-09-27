@@ -202,12 +202,20 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * 图片查看
+     * xUtils测试
      *
      * @param view
      */
     public void xutils(View view) {
         startActivity(new Intent(this, XUtilsActivity.class));
+    }
+    /**
+     * CoodinatorLayout
+     *
+     * @param view
+     */
+    public void coodinator(View view) {
+        startActivity(new Intent(this, CoodinatorActivity.class));
     }
 
 }
