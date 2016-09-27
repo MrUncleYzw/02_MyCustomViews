@@ -965,6 +965,83 @@ xUtils -- 让开发更简单
 
 ---
 
+## 构建者Builder设计模式
+>Builder模式的定义是用于构建复杂对象的一种模式,所构建的对象往往需要多步初始化或赋值才能完成
+
+比如类: ClientUser, 该类在不同情况下使用的时候需要的参数个数不定,采用构建者模式让调用者自由添加
+
+		public class ClientUser {
+		    private String userName;
+		    private String passWord;
+		    private Integer height;
+		    private Integer age;
+		
+		    private ClientUser(String userName, String passWord) {
+		    }
+		
+		    public String getUserName() {
+		        return userName;
+		    }
+		
+		    public void setUserName(String userName) {
+		        this.userName = userName;
+		    }
+		
+		    public String getPassWord() {
+		        return passWord;
+		    }
+		
+		    public void setPassWord(String passWord) {
+		        this.passWord = passWord;
+		    }
+		
+		    public Integer getHeight() {
+		        return height;
+		    }
+		
+		    public void setHeight(Integer height) {
+		        this.height = height;
+		    }
+		
+		    public Integer getAge() {
+		        return age;
+		    }
+		
+		    public void setAge(Integer age) {
+		        this.age = age;
+		    }
+		
+		    public static class Builder {
+		        private static ClientUser user;
+		
+		        public Builder(String userName, String passWord) {
+		            createClientUser(userName, passWord);
+		        }
+		
+		        private void createClientUser(String userName, String passWord) {
+		            user = new ClientUser(userName, passWord);
+		        }
+		
+		        public ClientUser build() {
+		            return user;
+		        }
+		
+		        public Builder setHeight(Integer height) {
+		            user.setHeight(height);
+		            return this;
+		        }
+		
+		        public Builder setAge(Integer age) {
+		            user.setAge(age);
+		            return this;
+		        }
+		    }
+		}
+
+
+
+---
+
 ## 自定义控件在代码中获取自定义属性
 
 1. 传统方法: 构造方法中的参数attrs已经封装了所有的属性,调用方法即可
