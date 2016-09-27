@@ -510,16 +510,16 @@ fastjson
  
 ## 沉浸式状态栏   由于沉浸式是android 19以后才支持 搞个values-v19,values-v21, v21支持手动设置状态栏颜色(19是半沉浸,21以后才是全沉浸)
 
-#### 方法1(推荐): 由于是4.4 V19 以后才有,所以需要搞个values-v19 / 21文件夹, 里面再搞一个styles.xml定义该样式(注意其他一致,重写immerse_theme)
-
->首先在Activity的根布局中添加属性,并设置想沉浸的background属性颜色
+>由于是4.4 V19 以后才有,所以需要搞个values-v19 / 21文件夹, 里面再搞一个styles.xml定义该样式(注意其他一致,重写immerse_theme)
+首先在Activity的根布局中添加属性,并设置想沉浸的background属性颜色
 		
 		android:fitsSystemWindows="true"
-		android:background="#e0fcfc"
+		// 背景设置成图片可以实现图片沉浸,注意v21需要设置statusBarColor透明	
+android:background="#e0fcfc"
 
->v19的方法就是利用fitsSystemWindows属性配合设置windowTranslucentStatus属性直接在根部局设置背景颜色来沉浸到状态栏实现    
+	v19的方法就是利用fitsSystemWindows属性配合设置windowTranslucentStatus属性直接在根部局设置背景颜色来沉浸到状态栏实现    
        
->v21的方法是通过fitsSystemWindows属性分离状态栏和你的Activity布局然后直接设置状态栏颜色实现沉浸式,两者都完美支持ActionBar和ToolBar(至于下面的导航栏沉不沉浸看需求)
+	v21的方法是通过fitsSystemWindows属性分离状态栏和你的Activity布局然后直接设置状态栏颜色实现沉浸式,两者都完美支持ActionBar和ToolBar(至于下面的导航栏沉不沉浸看需求)
 
 		// v19的处理
 		<style name="immerse_theme" parent="@style/Theme.AppCompat.Light.NoActionBar">
@@ -541,7 +541,6 @@ fastjson
 
 注意: 一般由于为了v21中的沉浸样式能被所有需要沉浸式的Activity用,在代码中设置该属性(抽象方法实现),每个Activity需要沉浸什么颜色自己决定.另外可以设置boolean变量是否需要沉浸式.对于界面显示是一个图片的沉浸式则需要设置状态栏的颜色为Color.TRANSPARENT
 
-#### 方法2: 代码手动设置(待写)
 
 
 ---
