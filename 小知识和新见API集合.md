@@ -751,7 +751,7 @@ android:background="#e0fcfc"
 	    }
 
 ---
-## 双击/多击事件
+## 双击事件/多击事件
 > 其原理如下. 最后的if条件句中的 500 就是控制多击事件的时间间隔
 
 			final long[] hits = new long[2];
