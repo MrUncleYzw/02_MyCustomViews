@@ -1,6 +1,5 @@
 package com.shiqkuangsan.mycustomviews.ui.activity;
 
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
@@ -17,13 +16,9 @@ import android.widget.ImageView;
 
 import com.shiqkuangsan.mycustomviews.R;
 import com.shiqkuangsan.mycustomviews.ui.fragment.DetailFragment;
-import com.shiqkuangsan.mycustomviews.utils.MyLogUtil;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Created by shiqkuangsan on 2016/9/28.

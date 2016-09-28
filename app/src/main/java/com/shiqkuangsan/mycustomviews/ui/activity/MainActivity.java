@@ -214,7 +214,7 @@ public class MainActivity extends BaseActivity {
      *
      * @param view
      */
-    public void coodinator(View view) {
+    public void coordinator(View view) {
         startActivity(new Intent(this, CoordinatorActivity.class));
     }
 

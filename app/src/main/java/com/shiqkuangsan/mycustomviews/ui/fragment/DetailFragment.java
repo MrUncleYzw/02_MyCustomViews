@@ -10,8 +10,12 @@ import android.widget.TextView;
 
 import com.shiqkuangsan.mycustomviews.R;
 
+
 /**
- * Created by Chenyc on 2015/6/29.
+ * Created by shiqkuangsan on 2016/9/28.
+ *
+ * @author shiqkaungsan
+ * @summary 就是展示一个TextView而已
  */
 public class DetailFragment extends Fragment {
 
