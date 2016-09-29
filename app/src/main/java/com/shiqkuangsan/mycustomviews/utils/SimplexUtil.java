@@ -1,6 +1,7 @@
 package com.shiqkuangsan.mycustomviews.utils;
 
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
@@ -37,8 +38,8 @@ public class SimplexUtil {
      *                 这里一定要注意你的bean类要和json数据对应
      * @return 请求Cancelable, 可以调用cancel()方法中断请求
      */
-    public static <T> Callback.Cancelable sendGet(@Nullable SimpleRequestParams params,
-                                                  @Nullable Callback.CommonCallback<T> callback) {
+    public static <T> Callback.Cancelable sendGet(@NonNull SimpleRequestParams params,
+                                                  @NonNull Callback.CommonCallback<T> callback) {
         return x.http().get(params, callback);
     }
 
@@ -54,8 +55,8 @@ public class SimplexUtil {
      *                 这里一定要注意你的bean类要和json数据对应
      * @return 请求Cancelable, 可以调用cancel()方法中断请求
      */
-    public static <T> Callback.Cancelable sendPost(@Nullable SimpleRequestParams params,
-                                                   @Nullable Callback.CommonCallback<T> callback) {
+    public static <T> Callback.Cancelable sendPost(@NonNull SimpleRequestParams params,
+                                                   @NonNull Callback.CommonCallback<T> callback) {
         return x.http().post(params, callback);
     }
 
@@ -165,7 +166,7 @@ public class SimplexUtil {
      * @return Cancelable对象, 可以调用cancel()方法撤销请求
      */
     public static <T> Callback.Cancelable uploadFile(String url, String paramName, File file,
-                                                     @Nullable Callback.ProgressCallback<T> callback) {
+                                                     @NonNull Callback.ProgressCallback<T> callback) {
         RequestParams params = new RequestParams(url);
         params.setMultipart(true);
         params.addBodyParameter(paramName, file);
@@ -182,7 +183,7 @@ public class SimplexUtil {
      * @return Cancelable对象, 可以调用cancel()方法撤销请求
      */
     public static <T> Callback.Cancelable downloadFile(String url, String filePath,
-                                                       @Nullable Callback.ProgressCallback<T> callback) {
+                                                       @NonNull Callback.ProgressCallback<T> callback) {
         RequestParams params = new RequestParams(url);
         //设置断点续传
         params.setAutoResume(true);
@@ -241,7 +242,7 @@ public class SimplexUtil {
      * @param options 加载参数
      * @param callback 请求回调,可以直接new SimpleFileCallBack< Drawable >(),泛型是规定必须Drawable
      */
-    public static void loadImage(ImageView image, String url, ImageOptions options, Callback.CommonCallback<Drawable> callback) {
+    public static void loadImage(ImageView image, String url, ImageOptions options,@NonNull Callback.CommonCallback<Drawable> callback) {
         x.image().bind(image, url, options, callback);
     }
 
