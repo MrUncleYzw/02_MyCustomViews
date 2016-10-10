@@ -64,6 +64,16 @@
 
 ---
 
+## 查看指定端口占用情况
+		
+		1. 查看跟该端口所有关联进程
+		netstat -aon|findstr "5037"
+
+		2. 根据不同的PID查找具体的进程
+		tasklist|findstr "2360"
+
+---
+
 ## ScrollView / ListView 控制滑动速度 
 	
 	自定义ScrollView然后重写fling()方法, 该方法中的参数velocityY可以控制滑动速度
@@ -328,6 +338,18 @@ Theme.Sherlock.Light.DarkActionBar无法找到
 1. 在编写android的自定义控件，或者判断用户手势操作时，往往需要使用MotionEvent中的getRawX()、getRawY()与getX()、getY()取得触摸点在X轴与Y轴上的距离，这四个方法都返回一个float类型的参数，单位为像素（Pixel）。在一个自定义的View中, 重写onTouchEvent, 调用getRawX()、getRawY()返回的是触摸点相对于屏幕的距离(以屏幕左上角为原点)，而getX()、getY()返回的则是触摸点相对于该View的距离(以view左上角为原点)。
 
 2. (待写)
+
+---
+
+## 项目中自行配置jni的路径
+>在module的defaultConfig{}中
+
+		sourceSets {
+            main {
+                jniLibs.srcDirs = ['libs']
+                java.srcDirs = ['src/main/java']
+            }
+        }
 
 ---
 
