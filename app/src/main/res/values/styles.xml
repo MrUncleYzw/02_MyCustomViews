@@ -79,6 +79,7 @@
         <item name="android:background">@drawable/selector_normal_btn_blue</item>
     </style>
 
+    <!--emma的沉浸式界面主题-->
     <style name="coordinator_emma" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

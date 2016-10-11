@@ -94,14 +94,13 @@ public class MainActivity extends BaseActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // keyCode 事件码
 //        System.out.println("onKeyDown: " + keyCode);
+//			如果按下的是菜单按钮
         if (keyCode == KeyEvent.KEYCODE_MENU) {
 
             if (AnimationUtil.oneAnimRunning)
                 // 当前有动画正在执行, 取消当前事件
                 return true;
 
-
-//			如果按下的是菜单按钮
             if (isLevel1Display) {
                 long delay = 0;
                 // 隐藏三级菜单
@@ -209,6 +208,7 @@ public class MainActivity extends BaseActivity {
     public void xutils(View view) {
         startActivity(new Intent(this, XUtilsActivity.class));
     }
+
     /**
      * CoodinatorLayout
      *

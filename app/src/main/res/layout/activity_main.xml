@@ -50,12 +50,14 @@
             android:layout_weight="1"
             android:onClick="slidemenu"
             android:text="侧滑菜单" />
+
         <Button
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:onClick="ptrtest"
             android:text="Ptr测试" />
+
         <Button
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -64,6 +66,7 @@
             android:text="图片选择" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ll_menu3"
         android:layout_width="match_parent"
@@ -78,18 +81,30 @@
             android:layout_weight="1"
             android:onClick="piclooker"
             android:text="图片查看" />
+
         <Button
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:onClick="xutils"
             android:text="xUtils测试" />
+
         <Button
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:onClick="coordinator"
             android:text="coordinator" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_menu4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ll_menu1"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
 
     </LinearLayout>
 
