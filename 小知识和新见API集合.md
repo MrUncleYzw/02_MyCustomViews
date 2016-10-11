@@ -82,6 +82,15 @@
 
 ---
 
+## 自定义字体设置
+
+>在activity的onCreate()或者onStart()方法中设置,有两个ttf文件在MyCustomViews项目下
+
+		AssetManager mgr=getAssets();//得到AssetManager
+        Typeface tf=Typeface.createFromAsset(mgr, "fonts/rm_albion.ttf");//根据路径得到Typeface
+        tv_splash_info.setTypeface(tf);//设置字体
+
+---
 ## 按钮的点击与否两种状态对应两张图片的方法
 
 1. 如果需要两种状态显示不同背景(按钮点击与否), 在res/drawable目录下新建xml文件, 选择selector属性
