@@ -38,8 +38,12 @@
         <activity
             android:name=".ui.activity.MomentAddActivity"
             android:theme="@style/theme_picchose_act" />
-        <activity android:name=".ui.activity.CoordinatorActivity"
-            android:theme="@style/coordinator_emma"/>
+        <activity
+            android:name=".ui.activity.CoordinatorActivity"
+            android:theme="@style/coordinator_emma" />
+        <activity
+            android:name=".ui.activity.RecyclerViewActivity"
+            android:theme="@style/AppTheme_NoActionBar" />
 
     </application>
 

@@ -82,6 +82,23 @@
 
 ---
 
+## Gradle配置修改生成的apk名字
+
+>和buildConfig / buildTypes方法同级
+
+	/**修改生成的apk名字*/
+    applicationVariants.all{ variant->
+        variant.outputs.each { output->
+            def oldFile = output.outputFile
+            if(variant.buildType.name.equals('release')){
+                def releaseApkName = '4G远程诊疗'+defaultConfig.versionName +"-"+getDate() + '.apk'
+                output.outputFile = new File(oldFile.parent, releaseApkName)
+            }
+        }
+    }
+
+---
+
 ## 自定义字体设置
 
 >在activity的onCreate()或者onStart()方法中设置,有两个ttf文件在MyCustomViews项目下

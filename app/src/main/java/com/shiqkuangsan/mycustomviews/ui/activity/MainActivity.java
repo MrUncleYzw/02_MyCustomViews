@@ -1,5 +1,6 @@
 package com.shiqkuangsan.mycustomviews.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.view.KeyEvent;
 import android.view.View;
@@ -216,6 +217,15 @@ public class MainActivity extends BaseActivity {
      */
     public void coordinator(View view) {
         startActivity(new Intent(this, CoordinatorActivity.class));
+    }
+
+    /**
+     * RecyclerView和AutoRatioLayout和CardView
+     *
+     * @param view
+     */
+    public void recycler(View view) {
+        startActivity(new Intent(this, RecyclerViewActivity.class));
     }
 
 }
