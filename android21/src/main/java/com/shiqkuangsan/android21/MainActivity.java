@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             final View view = View.inflate(MainActivity.this, R.layout.item_recycler, null);
-
             return view;
         }
     }

@@ -1211,7 +1211,7 @@ dispatchTouchEvent -> onInterceptTouchEvent -> onTouchEvent
 然后就把LruCache当HashMap来用就行了.
 
 
-
+---
 # 新见到的组件、API及其用法 :
 
 ---
@@ -1224,8 +1224,48 @@ dispatchTouchEvent -> onInterceptTouchEvent -> onTouchEvent
 		
 		ViewPropertyAnimator.animate(ll_menu_edit).translationY(ll_menu_edit.getWidth()).setDuration(200);
 
------	
+---
 
+## SwipeRefreshLayout简单使用
+
+         1、setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener listener):设置手势滑动监听器。
+
+         2、setProgressBackgroundColor(int colorRes):设置进度圈的背景色。
+
+         3、setColorSchemeResources(int… colorResIds):设置进度动画的颜色。
+
+         4、setRefreshing(Boolean refreshing):设置组件的刷洗状态。
+
+         5、setSize(int size):设置进度圈的大小，只有两个值：DEFAULT、LARGE
+
+
+---
+
+## CardView相关属性
+
+		app:cardBackgroundColor				这是设置背景颜色 
+
+		app:cardCornerRadius				这是设置圆角大小
+ 
+		app:cardElevation					这是设置z轴的阴影
+ 
+		app:cardMaxElevation				这是设置z轴的最大高度值 
+
+		app:cardUseCompatPadding			是否使用CompatPadding 
+
+		app:cardPreventCornerOverlap		是否使用PreventCornerOverlap 
+
+		app:contentPadding 					设置内容的padding 
+
+		app:contentPaddingLeft 				设置内容的左padding 
+
+		app:contentPaddingTop 				设置内容的上padding 
+
+		app:contentPaddingRight 			设置内容的右padding 
+
+		app:contentPaddingBottom 			设置内容的底padding
+
+---
 ## 一款好用的下拉刷新组件
 
 >在项目的Gradle中添加依赖	compile 'in.srain.cube:ultra-ptr:1.0.11'

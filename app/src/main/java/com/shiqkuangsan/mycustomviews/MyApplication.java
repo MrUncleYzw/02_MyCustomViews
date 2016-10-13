@@ -3,6 +3,7 @@ package com.shiqkuangsan.mycustomviews;
 import android.app.Application;
 import android.graphics.Bitmap;
 import android.os.Environment;
+import android.os.Handler;
 import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.cache.disc.impl.LimitedAgeDiskCache;
@@ -38,8 +39,13 @@ public class MyApplication extends Application {
 
         x.Ext.init(this);
         x.Ext.setDebug(true);
+
+        handler = new Handler();
     }
 
+    /**
+     * 初始化ImageLoader
+     */
     private void initImageLoader() {
         File cacheDir = getCacheDir();
         ImageLoaderConfiguration config = new ImageLoaderConfiguration
@@ -81,6 +87,11 @@ public class MyApplication extends Application {
                 .displayer(new RoundedBitmapDisplayer(10))// 设置半径为10的圆角
                 .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
                 .build();
+    }
+
+    private static Handler handler;
+    public static Handler getHandler(){
+        return handler;
     }
 
 }

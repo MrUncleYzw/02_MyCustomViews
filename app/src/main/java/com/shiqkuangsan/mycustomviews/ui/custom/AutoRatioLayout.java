@@ -14,7 +14,7 @@ import com.shiqkuangsan.mycustomviews.utils.MyLogUtil;
 
 /**
  * 图片流查看的时候,
- **/
+ */
 public class AutoRatioLayout extends FrameLayout {
 
     private float ratio;
